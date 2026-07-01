@@ -24,7 +24,7 @@
             font-size: 20px;
             font-weight: bold;
             color: white;
-            background-color: #28a745; /* Green for Enable */
+            background-color: #007bff; /* Blue for general actions */
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -32,8 +32,11 @@
         .btn:active {
             opacity: 0.8;
         }
+        .btn-success {
+            background-color: #28a745; /* Green for Enable/Found */
+        }
         .btn-danger {
-            background-color: #dc3545; /* Red for Disable */
+            background-color: #dc3545; /* Red for Disable/Alert */
         }
         #status {
             margin-top: 30px;
@@ -47,12 +50,22 @@
 
     <h1>MacroDroid Actions</h1>
 
-    <button class="btn" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/EnableBluetooth')">
+    <button class="btn btn-success" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/EnableBluetooth')">
         Enable Bluetooth
     </button>
 
     <button class="btn btn-danger" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/DisableBluetooth')">
         Disable Bluetooth
+    </button>
+
+    <hr style="width:50%; border-color: #333; margin: 25px auto;">
+
+    <button class="btn btn-danger" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/findmyphone')">
+        Find My Phone
+    </button>
+
+    <button class="btn btn-success" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/foundphone')">
+        Found Phone
     </button>
 
     <div id="status">Status: Ready</div>
