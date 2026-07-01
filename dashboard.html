@@ -24,26 +24,22 @@
             font-size: 20px;
             font-weight: bold;
             color: white;
-            background-color: #007bff;
+            background-color: #28a745; /* Green for Enable */
             border: none;
             border-radius: 8px;
             cursor: pointer;
         }
         .btn:active {
-            background-color: #0056b3;
+            opacity: 0.8;
         }
-        /* Custom color for specific actions if desired */
         .btn-danger {
-            background-color: #dc3545;
-        }
-        .btn-danger:active {
-            background-color: #bd2130;
+            background-color: #dc3545; /* Red for Disable */
         }
         #status {
             margin-top: 30px;
             font-size: 18px;
             font-weight: bold;
-            color: #aaa;
+            color: #ffc107;
         }
     </style>
 </head>
@@ -51,32 +47,34 @@
 
     <h1>MacroDroid Actions</h1>
 
+    <button class="btn" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/EnableBluetooth')">
+        Enable Bluetooth
+    </button>
+
     <button class="btn btn-danger" onclick="runMacro('https://trigger.macrodroid.com/95dfc6d5-a2fb-4bdb-89d2-957d4881ff3b/DisableBluetooth')">
         Disable Bluetooth
     </button>
 
-    <button class="btn" onclick="runMacro('YOUR_SECOND_WEBHOOK_URL_HERE')">
-        Action Two
-    </button>
-
     <div id="status">Status: Ready</div>
+
+    <iframe id="secret-frame" name="secret-frame" style="display:none;"></iframe>
 
     <script>
         function runMacro(url) {
             const statusDiv = document.getElementById('status');
-            statusDiv.innerText = "Status: Sending command...";
-            statusDiv.style.color = "#ffc107";
+            const frame = document.getElementById('secret-frame');
+            
+            statusDiv.innerText = "Status: Command Transmitted";
+            statusDiv.style.color = "#28a745";
 
-            fetch(url, { mode: 'no-cors' })
-                .then(() => {
-                    statusDiv.innerText = "Status: Command sent successfully.";
-                    statusDiv.style.color = "#28a745";
-                })
-                .catch(error => {
-                    statusDiv.innerText = "Status: Network error.";
-                    statusDiv.style.color = #dc3545;
-                    console.error('Error:', error);
-                });
+            // Forces the browser to load the link invisibly
+            frame.src = url;
+
+            // Reset status text after 3 seconds
+            setTimeout(() => {
+                statusDiv.innerText = "Status: Ready";
+                statusDiv.style.color = "#ffc107";
+            }, 3000);
         }
     </script>
 
